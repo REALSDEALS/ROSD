@@ -48,8 +48,12 @@ Get-ChildItem $WorkspaceLoc\Media | Where {$_.PSIsContainer} | Where {$_.Name -n
 Get-ChildItem $WorkspaceLoc\Media\Boot | Where {$_.PSIsContainer} | Where {$_.Name -notin $KeepTheseDirs} | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 Get-ChildItem $WorkspaceLoc\Media\EFI\Microsoft\Boot | Where {$_.PSIsContainer} | Where {$_.Name -notin $KeepTheseDirs} | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 
+### Download WiFi profile for guest network enrollment
+$WifiProfilePath = "$DownloadsPath\WiFiProfile.xml"
+Invoke-WebRequest -Uri "$RepositoryURL/Update/Automate/WiFiProfile.xml" -OutFile $WifiProfilePath -UseBasicParsing
+
 ### Configure WinPE
-Edit-OSDCloudWinPE -CloudDriver * -StartURL $RepositoryURL/OSDCloudStartURL.ps1
+Edit-OSDCloudWinPE -CloudDriver * -StartURL $RepositoryURL/OSDCloudStartURL.ps1 -WifiProfile $WifiProfilePath
 Copy-Item "$NewOSDWorkspace\OSDCloud_NoPrompt.iso" -Destination "$DownloadsPath" -ErrorAction SilentlyContinue
 Write-host " OSDCloud ISO created and copied to $DownloadsPath"
 
@@ -78,6 +82,7 @@ Do {
             Write-Host
             Write-Host " Removing Files from $WorkspaceLoc"
             Remove-Item -Path $WorkspaceLoc -Force -Recurse -ErrorAction SilentlyContinue
+            Remove-Item -Path $WifiProfilePath -Force -ErrorAction SilentlyContinue
             Write-Host
             Write-Host " Uninstalling ADK and ADK Add-on"
             get-package | where Name -Like "Windows Assessment and Deployment Kit Windows Preinstallation Environment Add-ons" | Uninstall-Package -Force -ErrorAction SilentlyContinue

@@ -20,19 +20,19 @@ Do {
         {
         1 {
             Update-OSDCloudUSB -DriverPack HP
-            Invoke-WebPSScript $RepositoryURL/OSDCloudDriverDownload.ps1
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadDriver.ps1
         }
         2 {
             Update-OSDCloudUSB -DriverPack Dell
-            Invoke-WebPSScript $RepositoryURL/OSDCloudDriverDownload.ps1
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadDriver.ps1
         }
         3 {
             Update-OSDCloudUSB -DriverPack Lenovo
-            Invoke-WebPSScript $RepositoryURL/OSDCloudDriverDownload.ps1
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadDriver.ps1
         }
         4 {
             Update-OSDCloudUSB -DriverPack Microsoft
-            Invoke-WebPSScript $RepositoryURL/OSDCloudDriverDownload.ps1
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadDriver.ps1
         }
         Q {
             Invoke-WebPSScript $RepositoryURL/OSDCloudUpdateMenu.ps1

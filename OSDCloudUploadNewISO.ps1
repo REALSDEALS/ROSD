@@ -5,7 +5,7 @@ Write-Host " ***************************"
 Write-Host
 
 ### Check if AZCopy is installed
-if (-NOT ((Test-Path -path $env:APPDATA\AzCopy\azcopy.exe -PathType Leaf)) {
+if (-NOT (Test-Path -path $env:APPDATA\AzCopy\azcopy.exe -PathType Leaf)) {
     ### Installing AzCopy
     Write-Host " Installing AZCopy"
     Write-Host
