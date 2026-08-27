@@ -1,5 +1,5 @@
 ### Set the repository and ISO download link
-$RepositoryURL  = 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main'
+$RepositoryURL  = 'https://raw.githubusercontent.com/REALSDEALS/ROSD/Development'
 $ISOURL         = 'https://osdcloudreg.blob.core.windows.net/osdcloudiso/OSDCloud_NoPrompt.iso'
 
 ### Install OSDCloud module if not present
